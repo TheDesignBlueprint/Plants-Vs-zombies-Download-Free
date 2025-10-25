@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants vs. Zombies Offers - Earn Rewards Playing Your Favorite Game!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Neue', cursive, Arial, sans-serif;
+        }
+
+        :root {
+            --green: #7cbc5a;
+            --dark-green: #5a8c3a;
+            --yellow: #ffd700;
+            --orange: #ff8c00;
+            --brown: #8b4513;
+            --zombie-green: #5a7c5a;
+            --sky-blue: #87ceeb;
+            --cpa-blue: #4361ee;
+            --cpa-purple: #3a0ca3;
+        }
+
+        body {
+            background: linear-gradient(to bottom, var(--sky-blue), #e0f7ff);
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--green);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 28px;
+            color: white;
+            text-shadow: 2px 2px 0 var(--dark-green);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--dark-green);
+            box-shadow: 0 4px 0 #ccac00;
+        }
+
+        .btn-primary:hover {
+            background: #ffdf4d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #ccac00;
+        }
+
+        .btn-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #ccac00;
+        }
+
+        .btn-cpa {
+            background: var(--cpa-blue);
+            color: white;
+            box-shadow: 0 4px 0 var(--cpa-purple);
+        }
+
+        .btn-cpa:hover {
+            background: #5a75f0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 var(--cpa-purple);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: var(--green);
+            z-index: -1;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--dark-green);
+            text-shadow: 2px 2px 0 white;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .lawn {
+            width: 100%;
+            height: 300px;
+            background: var(--green);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .plant {
+            position: absolute;
+            bottom: 0;
+            width: 80px;
+            height: 120px;
+            z-index: 2;
+        }
+
+        .zombie {
+            position: absolute;
+            bottom: 0;
+            width: 80px;
+            height: 120px;
+            z-index: 1;
+        }
+
+        .sunflower {
+            left: 20%;
+            color: var(--yellow);
+        }
+
+        .peashooter {
+            left: 40%;
+            color: var(--green);
+        }
+
+        .walnut {
+            left: 60%;
+            color: var(--brown);
+        }
+
+        .zombie-1 {
+            right: 20%;
+            color: var(--zombie-green);
+        }
+
+        .zombie-2 {
+            right: 5%;
+            color: #4a5a4a;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        /* CPA Offers Section */
+        .cpa-offers {
+            padding: 80px 0;
+            background-color: white;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 var(--yellow);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+            border: 3px solid var(--cpa-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card::before {
+            content: "HOT OFFER";
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--cpa-blue);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .offer-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--cpa-blue);
+        }
+
+        .offer-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-green);
+        }
+
+        .offer-card .reward {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--cpa-blue);
+            margin: 15px 0;
+        }
+
+        .offer-card p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #e0f7ff, #b3e5fc);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--cpa-blue);
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--cpa-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+            color: var(--dark-green);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 5px solid var(--yellow);
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--cpa-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--green), var(--dark-green));
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 20px;
+        }
+
+        .cta-section .btn {
+            background: var(--yellow);
+            color: var(--dark-green);
+            font-size: 20px;
+            padding: 15px 40px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-green);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: var(--yellow);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--yellow);
+            color: var(--dark-green);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* Animation for plants and zombies */
+        @keyframes plantAnimation {
+            0% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0); }
+        }
+
+        @keyframes zombieWalk {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-20px); }
+        }
+
+        .plant {
+            animation: plantAnimation 3s infinite ease-in-out;
+        }
+
+        .zombie {
+            animation: zombieWalk 2s infinite alternate ease-in-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                margin: 20px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    PvZ Rewards
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Offers</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+                <a href="#" class="btn btn-cpa">Earn Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Earn Rewards While Playing Plants vs. Zombies!</h1>
+                <p>Complete simple offers and surveys to earn coins, gems, and exclusive items for your favorite game. Defend your lawn and get rewarded!</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-gamepad"></i> Start Earning</a>
+                    <a href="#" class="btn btn-cpa">View Offers</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="lawn">
+                    <div class="plant sunflower">
+                        <i class="fas fa-sun" style="font-size: 80px;"></i>
+                    </div>
+                    <div class="plant peashooter">
+                        <i class="fas fa-seedling" style="font-size: 80px;"></i>
+                    </div>
+                    <div class="plant walnut">
+                        <i class="fas fa-apple-alt" style="font-size: 80px;"></i>
+                    </div>
+                    <div class="zombie zombie-1">
+                        <i class="fas fa-ghost" style="font-size: 80px;"></i>
+                    </div>
+                    <div class="zombie zombie-2">
+                        <i class="fas fa-skull" style="font-size: 80px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CPA Offers Section -->
+    <section class="cpa-offers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hot PvZ Offers</h2>
+                <p>Complete these offers to earn rewards for your Plants vs. Zombies game</p>
+            </div>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Premium Survey</h3>
+                    <div class="reward">+500 Coins</div>
+                    <p>Complete a short survey about gaming habits and earn coins for PvZ.</p>
+                    <a href="#" class="btn btn-cpa">Get Reward</a>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App Download</h3>
+                    <div class="reward">+1000 Coins</div>
+                    <p>Download and try a partner gaming app to earn big rewards.</p>
+                    <a href="#" class="btn btn-cpa">Get Reward</a>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3>Special Offer</h3>
+                    <div class="reward">+750 Coins</div>
+                    <p>Sign up for a free trial and get coins instantly added to your account.</p>
+                    <a href="#" class="btn btn-cpa">Get Reward</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Earn rewards in just three simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Create your free account in minutes</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Complete Offers</h3>
+                    <p>Choose from surveys, app downloads, or special offers</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Rewards</h3>
+                    <p>Receive coins and gems directly in your PvZ account</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Players Say</h2>
+                <p>See how other Plants vs. Zombies fans are earning rewards</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "I earned 5000 coins just by completing a few surveys! Now I can buy all the premium plants I wanted."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Mike Johnson</h4>
+                            <p>PvZ Player</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The app download offers are amazing. I got 2000 coins for trying a fun puzzle game. Totally worth it!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SR</div>
+                        <div class="author-info">
+                            <h4>Sarah Roberts</h4>
+                            <p>Casual Gamer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "As a hardcore PvZ fan, these rewards helped me unlock everything without spending real money. Love it!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TD</div>
+                        <div class="author-info">
+                            <h4>Tom Davis</h4>
+                            <p>PvZ Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container">
+        <div class="cta-section">
+            <h2>Ready to Boost Your PvZ Game?</h2>
+            <p>Join thousands of Plants vs. Zombies players who are earning rewards without spending money. Start completing offers today!</p>
+            <a href="#" class="btn">Start Earning Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PvZ Rewards</h3>
+                    <p>The official rewards platform for Plants vs. Zombies fans. Earn coins, gems, and exclusive items by completing simple offers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Offers</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Offer Types</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Surveys</a></li>
+                        <li><a href="#">App Downloads</a></li>
+                        <li><a href="#">Free Trials</a></li>
+                        <li><a href="#">Sign Up Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 PvZ Rewards. This is an independent platform and is not affiliated with Electronic Arts Inc. Plants vs. Zombies is a registered trademark of Electronic Arts Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for animations and interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animation to offer cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe offer cards
+            const offerCards = document.querySelectorAll('.offer-card');
+            offerCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+
+            // Observe testimonial cards
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            testimonialCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
